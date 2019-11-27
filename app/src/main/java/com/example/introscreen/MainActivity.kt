@@ -1,6 +1,7 @@
 package com.example.introscreen
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -41,6 +42,10 @@ class MainActivity : AppCompatActivity() {
         val update = Runnable { viewPager2.currentItem = (viewPager2.currentItem + 1) % 3}
 
         //TODO switch activity when button pressed
+        getStarted.setOnClickListener {
+            startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+            overridePendingTransition(R.anim.slide_from_bottom, R.anim.slide_from_bottom)
+        }
 
         val timer = Timer()
         timer.schedule(object : TimerTask() {
