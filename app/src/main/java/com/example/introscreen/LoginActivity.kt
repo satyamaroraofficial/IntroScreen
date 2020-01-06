@@ -3,13 +3,13 @@ package com.example.introscreen
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import android.os.Bundle
 import android.text.Editable
 import android.text.Selection
 import android.text.TextWatcher
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
-import android.widget.Toolbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import java.util.regex.Pattern
@@ -24,9 +24,9 @@ class LoginActivity : AppCompatActivity() {
         val textInputLayout: TextInputLayout = findViewById(R.id.textInputLayout)
         val button: Button = findViewById(R.id.smsVerificationButton)
 
-//        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-//        toolbar.navigationIcon = resources.getDrawable(R.drawable.ic_arrow_back_black_24dp)
-//        toolbar.setNavigationOnClickListener{onBackPressed()}
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        toolbar.navigationIcon = resources.getDrawable(R.drawable.ic_arrow_back_black_24dp)
+        toolbar.setNavigationOnClickListener{onBackPressed()}
 
         button.setOnClickListener {
             if(isValid(phoneEditText.text!!.toString())){
@@ -63,6 +63,11 @@ class LoginActivity : AppCompatActivity() {
 
             }
         })
+    }
+
+    override fun onNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun isValid(s: String): Boolean {
